@@ -1,0 +1,38 @@
+---
+title: "R Markdown and Leaflet"
+author: "Elisa Villar"
+date: "22/02/2022"
+output: html_document
+---
+## Summary
+
+Create a web page using R Markdown that features a map created with Leaflet. 
+
+Host your webpage on either GitHub Pages, RPubs, or NeoCities.
+
+
+## Leaflet Interactive Map (Feb 2,2022)
+
+```{r map}
+
+library(leaflet)
+
+heart_icon <- makeIcon(
+  iconUrl = "love.png",
+  iconWidth = 31*215/230, iconHeight = 31,
+  iconAnchorX = 31*215/230/2, iconAnchorY = 16)
+
+lat_long <- data.frame(
+  lat = c(-42.7636, 43.4516),
+  lng = c(-65.0348, -80.4925))
+
+mapSites <- c(
+  "<a href='https://en.wikipedia.org/wiki/Puerto_Madryn'>Puerto Madryn</a>",
+  "<a href='https://en.wikipedia.org/wiki/Kitchener,_Ontario'>Kitchener</a>")
+
+lat_long %>% 
+  leaflet() %>%
+  addTiles() %>%
+  addMarkers(icon = heart_icon, popup = mapSites)
+
+```
